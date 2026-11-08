@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plated · AI Kitchen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&family=Young+Serif&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ai-kitchen.css">
+</head>
+<body>
+
+<header class="top">
+  <span class="brand">Plated</span>
+  <nav role="tablist" aria-label="Sections">
+    <button role="tab" id="tab-kitchen" aria-selected="true" aria-controls="kitchen">AI Kitchen</button>
+    <button role="tab" id="tab-library" aria-selected="false" aria-controls="library">Recipe library <span id="count" class="count">0</span></button>
+  </nav>
+</header>
+
+<main>
+  <!-- AI KITCHEN -->
+  <section id="kitchen" role="tabpanel" aria-labelledby="tab-kitchen">
+
+    <details class="key" id="keyBox">
+      <summary>Gemini API key <span id="keyState" class="pill"></span></summary>
+      <div class="row">
+        <input id="apiKey" type="password" autocomplete="off" spellcheck="false" placeholder="Paste your Gemini API key" aria-label="Gemini API key">
+        <button type="button" id="saveKey">Save key</button>
+        <button type="button" id="clearKey" class="ghost">Remove key</button>
+      </div>
+      <label class="inline">Model
+        <input id="model" value="gemini-flash-latest" spellcheck="false">
+      </label>
+      <p class="hint">Your key is stored only in this browser and sent only to Google. Get one at aistudio.google.com/apikey, and never paste it into a file you commit to GitHub.</p>
+    </details>
+
+    <div class="grid">
+      <form id="brief" autocomplete="off">
+        <fieldset>
+          <legend>Dietary requirements</legend>
+          <div class="checks" id="diet"></div>
+          <input id="dietOther" placeholder="Allergies, dislikes, anything else">
+        </fieldset>
+
+        <label>Ingredients you have
+          <textarea id="ingredients" rows="4" placeholder="e.g. chicken thighs, rice, spinach, garlic, lemon" required></textarea>
+        </label>
+
+        <label>What are you in the mood for?
+          <input id="inspiration" placeholder="e.g. cosy Thai-style curry, or something quick">
+        </label>
+
+        <label>Servings
+          <input id="servings" type="number" min="1" max="12" value="2">
+        </label>
+
+        <button type="submit" id="go">Cook up a recipe</button>
+        <p id="status" role="status"></p>
+        <p class="hint">AI can make mistakes. If you have a serious allergy, always check the recipe and your labels yourself.</p>
+      </form>
+
+      <article id="result" class="card" aria-live="polite">
+        <p class="empty">Your recipe will appear here.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- RECIPE LIBRARY -->
+  <section id="library" role="tabpanel" aria-labelledby="tab-library" hidden>
+    <div id="libList"></div>
+    <article id="libView" class="card" hidden></article>
+  </section>
+</main>
+
+<script src="ai-kitchen.js"></script>
+</body>
+</html>
